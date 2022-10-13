@@ -7,13 +7,15 @@
     </div>
 
     <div class="p-4" style="box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%); border-radius: 15px">
-      <div class="d-flex justify-content-end">
-        <a class="mx-1" href="{% url 'articles:update' article.pk%}" style="color: #35C5F0">수정</a>
-        <a class="mx-1" href="{% url 'articles:delete' article.pk %}" style="color: #f77">삭제</a>
-      </div>
+      {% if article.author == request.user %}
+        <div class="d-flex justify-content-end">
+          <a class="mx-1" href="{% url 'articles:update' article.pk%}" style="color: #35C5F0">수정</a>
+          <a class="mx-1" href="{% url 'articles:delete' article.pk %}" style="color: #f77">삭제</a>
+        </div>
+      {% endif %}
       <div class="">
         <h2>{{ article.title }}</h2>
-        <p class="text-muted m-0">{{ article.content }}
+        <p class="text-muted m-0">{{ article.author }}
           <span class="fw-lighter">|
             {{ article.created_at }}</span></p>
       </div>

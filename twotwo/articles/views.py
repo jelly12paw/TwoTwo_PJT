@@ -15,7 +15,9 @@ def create(request):
     if request.method == 'POST':
         article_form = ArticleForm(request.POST)
         if article_form.is_valid():
-            article_form.save()
+            post = article_form.save(commit=False)
+            post.author = request.user
+            post.save()
             return redirect('articles:index')
     else: 
         article_form = ArticleForm()
@@ -33,13 +35,14 @@ def detail(request, pk):
     }
     return render(request, 'articles/detail.html', context)
     
+@login_required
 def update(request, pk):
     articles = Article.objects.get(pk=pk)
     if request.method == "POST":
         article_form = ArticleForm(request.POST, instance=articles)
         if article_form.is_valid():
             article_form.save()
-            return redirect("accounts:index")
+            return redirect("articles:index")
     else:
         article_form = ArticleForm(instance=articles)
     context = {

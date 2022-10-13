@@ -43,6 +43,11 @@ def update(request):
     }
     return render(request, 'accounts/update.html', context)
 
+def delete(request):
+    request.user.delete()
+    auth_logout(request)
+    return redirect('articles:index')
+
 def detail(request, pk):
     user = get_user_model().objects.get(pk=pk)
     context = {
