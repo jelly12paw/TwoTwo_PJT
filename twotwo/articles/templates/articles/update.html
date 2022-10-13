@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-<h1 class="text-center">글수정</h1>
+  <h1 class="text-center">글수정</h1>
   <form action="" method="POST">
     {% csrf_token %}
     {% bootstrap_form article_form %}

@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     articles = Article.objects.order_by('-pk')
-
     context = {
         'articles': articles
     }
@@ -23,7 +22,7 @@ def create(request):
     context = {
         'article_form': article_form
     }
-    return render(request, 'articles/form.html', context=context)
+    return render(request, 'articles/new.html', context=context)
 
 def detail(request, pk):
 
