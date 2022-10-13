@@ -6,6 +6,6 @@
     {% csrf_token %}
     {% bootstrap_form article_form %}
     <input type="submit" value="submit" class="btn btn-dark">
-    <a href="{% url 'accounts:detail' articles.pk %}" class="btn btn-light">cancel</a>
+    <a href="{% url 'articles:detail' articles.pk %}" class="btn btn-light">cancel</a>
   </form>
 {% endblock %}

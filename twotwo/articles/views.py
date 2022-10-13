@@ -39,7 +39,7 @@ def update(request, pk):
         article_form = ArticleForm(request.POST, instance=articles)
         if article_form.is_valid():
             article_form.save()
-            return redirect("accounts:index")
+            return redirect("articles:index")
     else:
         article_form = ArticleForm(instance=articles)
     context = {

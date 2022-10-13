@@ -61,7 +61,7 @@ def login(request):
             auth_login(request, form.get_user())
             # http://127.0.0.1:8000/accounts/login/?next=/articles/1/update/
             # request.GET.get('next') : /articles/1/update/
-            return redirect(request.GET.get('next') or 'articles:index')
+            return redirect(request.GET.get('next') or 'accounts:index')
     else:
         form = AuthenticationForm()
     context = {
