@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
-{% load django_bootstrap5 %}
 
 {% block content %}
-  <h1>프로필 업데이트</h1>
-  <form action="" method="POST">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button type="submit">제출</button>
-  </form>
-  <a href="{% url 'accounts:update'%}">
-    <h1>회원 정보 수정</h1>
-  </a>
-{% endblock content %}
+<h1>{{ user.username }}님의 프로필</h1>
+<p>{{ user.email }}</p>
+<a href="{% url 'accounts:update' %}">회원정보수정</a>
+{% endblock%}
