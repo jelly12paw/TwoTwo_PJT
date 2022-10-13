@@ -42,7 +42,7 @@
 - Signup : 박혜진
 - User Update : 지현식
 - Password Update : 최준우
-- Login % Logout : 안예지
+- Login & Logout : 안예지
 - User Delete : 김다겸
 
 
