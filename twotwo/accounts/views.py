@@ -1,13 +1,34 @@
-from django.shortcuts import render, redirect
-from .models import Article
-from .forms import ArticleForm
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
+from .forms import CustomUserChangeForm
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
-
 # Create your views here.
+
+@login_required
+def update(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:detail', request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, 'accounts/update.html', context)
+
+def detail(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    context = {
+        'user': user
+    }
+    return render(request, 'accounts/detail.html', context)
+
 def login(request):
     if request.method == 'POST':
         # AuthenticationForm은 ModelForm이 아님!
@@ -29,20 +50,6 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    
-@login_required
-def create(request):
-    if request.method == 'POST':
-        article_form = ArticleForm(request.POST)
-        if article_form.is_valid():
-            article_form.save()
-            return redirect('articles:index')
-    else: 
-        article_form = ArticleForm()
-    context = {
-        'article_form': article_form
-    }
-    return render(request, 'articles/form.html', context=context)
 
 @login_required
 def change_password(request):
@@ -58,9 +65,3 @@ def change_password(request):
     'form': form,
     }
     return render(request, 'accounts/change_password.html', context)
-
-@login_required
-def delete(request, pk):
-    articles = Article.objects.get(pk=pk)
-    articles.delete()
-    return redirect('articles:index')
