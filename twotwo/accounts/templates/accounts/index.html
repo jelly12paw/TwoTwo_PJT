@@ -20,7 +20,7 @@
             </li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link mx-3">{{user}}</a>
+              <a class="nav-link mx-3"href={% url 'accounts:logout' %}>{{user}}님 로그아웃</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-3" href="{% url 'articles:create' %}">글 쓰기</a>
