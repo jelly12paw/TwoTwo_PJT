@@ -1,4 +1,4 @@
-#!C:\Users\User\Desktop\TwoTwo_PJT\twotwo\venv\Scripts\python.exe
+#!C:\Users\chlwn\django_practices\twotwo_pjt\TwoTwo_PJT\twotwo\venv\Scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

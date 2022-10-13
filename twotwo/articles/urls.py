@@ -10,3 +10,4 @@ urlpatterns = [
     path('<int:pk>/update', views.update, name="update"),
     path('delete/<int:pk>', views.delete, name="delete"),
 ]
+# testvenv
