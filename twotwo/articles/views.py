@@ -17,5 +17,4 @@ def detail(request, pk):
     context = {
         'article': article
     }
-    
     return render(request, 'articles/detail.html', context)
