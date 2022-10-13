@@ -1,7 +1,25 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 from articles.forms import ArticleForm
 from .models import Article
 
+# Create your views here.
+def index(request):
+    articles = Article.objects.order_by('-pk')
+
+    context = {
+        'articles': articles
+    }
+    return render(request, 'articles/index.html', context)
+
+def detail(request, pk):
+
+    article = Article.objects.get(id=pk)
+
+    context = {
+        'article': article
+    }
+    return render(request, 'articles/detail.html', context)
+    
 def update(request, pk):
     articles = Article.objects.get(pk=pk)
     if request.method == "POST":
